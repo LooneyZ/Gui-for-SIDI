@@ -200,7 +200,7 @@ namespace Gui_for_SIDI
         private void Start_Games(Account[] array, int id, int definition)
         {
             if (array == null) return;
-            ProcessStartInfo startInfo = new ProcessStartInfo(System.AppDomain.CurrentDomain.BaseDirectory + "SteamItemDropIdler\\SteamItemDropIdler.exe");
+            ProcessStartInfo startInfo = new ProcessStartInfo(System.AppDomain.CurrentDomain.BaseDirectory + "SteamItemDropIdler.exe");
             startInfo.WindowStyle = ProcessWindowStyle.Minimized;
             for (int i = 0; i < array.Length; ++i)
             {
