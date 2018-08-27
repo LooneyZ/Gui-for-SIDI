@@ -1,0 +1,144 @@
+﻿<Window x:Class="Gui_for_SIDI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gui_for_SIDI"
+        mc:Ignorable="d"
+        Icon="favicon.ico"
+        Title="GUI for SIDI by Looney" Height="500" Width="400">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Run the game">
+                <StackPanel>
+                    <WrapPanel>
+                        <Label Width="100" HorizontalAlignment="Left" VerticalAlignment="Top">Game to play</Label>
+                        <ComboBox Name="cb_games_list"  Margin="0,5" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left">
+                        </ComboBox>
+                    </WrapPanel>
+                    <WrapPanel ToolTip="Timeout between starting the programs">
+                        <Label Width="100" HorizontalAlignment="Left" VerticalAlignment="Top">Timeout (sec)</Label>
+                        <TextBox Name="tb_timeout" TextAlignment="Right" Margin="0,5"  Width="40" PreviewTextInput="tb_PreviewTextInput">30</TextBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label Width="100" HorizontalAlignment="Left" VerticalAlignment="Top">Accounts</Label>
+                        <RadioButton Name="rb_all" GroupName="Acc_select_Type" Content="All" Checked="RadioButton_All_Checked" Margin="5,5" IsChecked="True" />
+                        <RadioButton Name="rb_choose" GroupName="Acc_select_Type" Content="Choose" Checked="RadioButton_Choose_Checked" Margin="5,5" />
+                        <RadioButton Name="rb_static" GroupName="Acc_select_Type" Content="Static amount" Checked="RadioButton_Static_Checked" Margin="5,5" />
+                    </WrapPanel>
+                    <StackPanel Margin="5,5,0,5" IsEnabled="true">
+                        <GroupBox Name="gb_chooseaccs" Header="Choose accouts to play" Padding="5" Visibility="Collapsed">
+                            <ScrollViewer MaxHeight="200" VerticalScrollBarVisibility="Auto">
+                                <StackPanel Name="sp_chooseaccs"></StackPanel>
+                            </ScrollViewer>
+                        </GroupBox>
+                        <GroupBox Name="gb_staticaccs" Header="Choose group to play" Padding="5" Visibility="Collapsed">
+                            <StackPanel>
+                                <WrapPanel>
+                                    <Label>Enter the number of accounts to play:</Label>
+                                    <TextBox Name="tb_groupac" Margin="5,5" Width="30" PreviewTextInput="tb_PreviewTextInput">20</TextBox>
+                                    <Button Height="20" Width="60" Click="But_updatestatic_Click">Update</Button>
+                                </WrapPanel>
+                                <ScrollViewer MaxHeight="200" VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Name="sp_staticaccs"></StackPanel>
+                                </ScrollViewer>
+                            </StackPanel>
+                            
+                        </GroupBox>
+                    </StackPanel>
+                    <Button 
+                        Name="but_start" 
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="10,10"
+                        Height="20"
+                        Width="60"
+                        Content="Start"
+                        Click="But_start_Click"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Manage accounts">
+                <StackPanel>
+                    <GroupBox Header="Add account" Padding="5">
+                        <StackPanel>
+                            <WrapPanel>
+                                <Label Width="70" HorizontalAlignment="Left" VerticalAlignment="Top">Login</Label>
+                                <TextBox Name="tb_login" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Margin="0,5"></TextBox>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <Label Width="70" HorizontalAlignment="Left" VerticalAlignment="Top">Password</Label>
+                                <PasswordBox Name="tb_pass" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Margin="0,5"></PasswordBox>
+                            </WrapPanel>
+                            <Button 
+                                VerticalAlignment="Top" 
+                                HorizontalAlignment="Left"
+                                Height="20"
+                                Width="100"
+                                Margin="5,5,0,0"
+                                Click="But_addac_Click">Add</Button>
+                            
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Delete account" Padding="5">
+                        <StackPanel>
+                            <Expander Margin="0,0,0,2" VerticalAlignment="Top" Expanded="Expander_DelAcs" Header="Choose accounts">
+                                <ScrollViewer IsEnabled="True" Margin="0,0,0,2" MaxHeight="200">
+                                    <StackPanel Margin="0,0,0,2" Name="st_deleteacs"></StackPanel>
+                                </ScrollViewer>
+                            </Expander>
+                            <Button
+                                VerticalAlignment="Top" 
+                                HorizontalAlignment="Left"
+                                Height="20"
+                                Width="100"
+                                Margin="5,5,0,0" Click="But_delac_Click">Delete</Button>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Manage games">
+                <StackPanel>
+                    <GroupBox Header="Add game" Padding="5">
+                        <StackPanel>
+                            <WrapPanel ToolTip="The name you want to be shown">
+                                <Label Width="115" HorizontalAlignment="Left" VerticalAlignment="Top">Game Name</Label>
+                                <TextBox Name="tb_gamename"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Margin="0,5"></TextBox>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <Label Width="115" HorizontalAlignment="Left" VerticalAlignment="Top">Game ID/App ID</Label>
+                                <TextBox Name="tb_gameid" PreviewTextInput="tb_PreviewTextInput" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Margin="0,5"></TextBox>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <Label Width="115" HorizontalAlignment="Left" VerticalAlignment="Top">Drop List Definition</Label>
+                                <TextBox Name="tb_definition" PreviewTextInput="tb_PreviewTextInput" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Margin="0,5"></TextBox>
+                            </WrapPanel>
+                            <Button 
+                                VerticalAlignment="Top" 
+                                HorizontalAlignment="Left"
+                                Height="20"
+                                Width="100"
+                                Margin="5,5,0,0"
+                                Click="But_addgame_Click">Add</Button>
+
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Delete game" Padding="5">
+                        <StackPanel>
+                            <Expander Margin="0,0,0,2" VerticalAlignment="Top" Expanded="Expander_DelGames" Header="Choose games">
+                                <ScrollViewer IsEnabled="True" Margin="0,0,0,2" MaxHeight="200">
+                                    <StackPanel Margin="0,0,0,2" Name="st_deletegame"></StackPanel>
+                                </ScrollViewer>
+                            </Expander>
+                            <Button
+                                VerticalAlignment="Top" 
+                                HorizontalAlignment="Left"
+                                Height="20"
+                                Width="100"
+                                Margin="5,5,0,0" Click="But_delgame_Click">Delete</Button>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
